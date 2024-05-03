@@ -1,10 +1,12 @@
 package com.myblog.myblog11.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.web.WebProperties;
+
+import java.util.List;
 
 @Entity
 @Table(name="post")
@@ -19,4 +21,7 @@ public class Post {
     private String title;
     private String description;
     private String content;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "post")
+    private List<Comment> comments;
 }
