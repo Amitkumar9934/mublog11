@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -58,6 +59,8 @@ public ResponseEntity<JWTAuthResponse> authenticateUser(@RequestBody LoginDto lo
 
     // get token form tokenProvider
     String token = tokenProvider.generateToken(authentication);
+    //UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
 
     return ResponseEntity.ok(new JWTAuthResponse(token));
 }
